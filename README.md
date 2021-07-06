@@ -4,6 +4,14 @@
 - Written in Go
 - Stores data in Gorm with PostgreSQL
 
+# Quickstart
+```shell
+git clone https://github.com/cenkayla/crud.git
+cd crud
+go run cmd/main.go
+```
+
+
 # Usage
 To list students:
 ```shell
