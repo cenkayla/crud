@@ -10,7 +10,6 @@ import (
 )
 
 type App struct {
-	Router *mux.Router
 	DB     *gorm.DB
 }
 
