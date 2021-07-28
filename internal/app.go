@@ -1,21 +1,26 @@
 package internal
 
 import (
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/cenkayla/crud/model"
 	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 type App struct {
-	DB     *gorm.DB
+	DB *gorm.DB
 }
 
 func (a *App) Open() error {
-	dsn := "postgres://destr0:12345m@localhost:5432/crud?sslmode=disable"
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err := godotenv.Load(".env"); err != nil {
+		log.Fatal("Error when loading .env file")
+	}
+	db, err := gorm.Open(postgres.Open(os.Getenv("DATABASE")), &gorm.Config{})
 	if err != nil {
 		return err
 	}
